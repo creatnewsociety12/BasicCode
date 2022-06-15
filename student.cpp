@@ -44,8 +44,6 @@ void new_student(student *s)
     *s = create_student();
 }
 
-// 定义一个student类型的map，用来存储所有学生的信息
-map<int, student> student_map;
 
 // 新建一个student_class类实例，用来存储所有学生的信息
 student_class student_class_instance;
@@ -59,8 +57,6 @@ void insert_student(student s)
 {
     students.push_back(s);
 }
-
-
 
 // 冒泡排序，按照学生的成绩从小到大排序
 void bubble_sort()
@@ -112,20 +108,20 @@ void quick_sort()
     }
 }
 
-// 根据学生姓名查找学生信息
-student CStudent::find_student_by_name(string name)
+// 根据学生姓名,从students_map STL 容器中查找学生信息
+student CStudent::find_student(string name)
 {
-    for (int i = 0; i < students.size(); i++)
+    student s;
+    for (auto it = students_map.begin(); it != students_map.end(); it++)
     {
-        if (students[i].name == name)
+        if (it->second.name == name)
         {
-            return students[i];
+            s = it->second;
+            break;
         }
     }
-    student s;
     return s;
 }
-
 
 // 根据学生成绩查找学生信息
 student CStudent::find_student_by_score(int score)
@@ -141,30 +137,18 @@ student CStudent::find_student_by_score(int score)
     return s;
 }
 
-// 根据学生学号查找学生信息
+// 根据学生学号,从students_map STL 容器中查找学生信息
 student CStudent::find_student_by_number(int number)
 {
-    for (int i = 0; i < students.size(); i++)
-    {
-        if (students[i].number == number)
-        {
-            return students[i];
-        }
-    }
     student s;
+    s = students_map[number]; // 从students_map STL 容器中查找学生信息
     return s;
 }
 
 // 根据学生学号，删除学生信息
 void CStudent::delete_student_by_number(int number)
 {
-    for (int i = 0; i < students.size(); i++)
-    {
-        if (students[i].number == number)
-        {
-            students.erase(students.begin() + i);
-        }
-    }
+    students_map.erase(number);
 }
 
 // 随机生成一个学号，范围在10001到99999之间
@@ -190,39 +174,10 @@ void CStudent::insert_student_map(student s)
     student_map.insert(pair<int, student>(s.number, s));
 }
 
-// 学生map查找一个学生信息
-student CStudent::find_student_map_by_number(int number)
-{
-    student s;
-    map<int, student>::iterator it;
-    it = student_map.find(number);
-    if (it != student_map.end())
-    {
-        s = it->second;
-    }
-    return s;
-}
-
-// 学生map删除一个学生信息
-void CStudent::delete_student_map_by_number(int number)
-{
-    map<int, student>::iterator it;
-    it = student_map.find(number);
-    if (it != student_map.end())
-    {
-        student_map.erase(it);
-    }
-}
-
 // 根据提供的学生学号，修改一个学生的成绩
 void CStudent::update_student_score(int number, int score)
 {
-    map<int, student>::iterator it;
-    it = student_map.find(number);
-    if (it != student_map.end())
-    {
-        it->second.score = score;
-    }
+    student_map[number].score = score;
 }
 
 
