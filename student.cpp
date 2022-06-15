@@ -58,54 +58,12 @@ void insert_student(student s)
     students.push_back(s);
 }
 
-// 冒泡排序，按照学生的成绩从小到大排序
-void bubble_sort()
+// 对map类型的students_map容器，按照score成绩，把里面的每一个student，按照score成绩从小到大排序
+void sort_student_by_score()
 {
-    int n = students.size();
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            if (students[j].score > students[j + 1].score)
-            {
-                swap(students[j], students[j + 1]);
-            }
-        }
-    }
-}
-
-// 快速排序，按照学生的成绩从小到大排序
-void quick_sort()
-{
-    int n = students.size();
-    int i = 0;
-    int j = n - 1;
-    int pivot = students[n / 2].score;
-    while (i <= j)
-    {
-        while (students[i].score < pivot)
-        {
-            i++;
-        }
-        while (students[j].score > pivot)
-        {
-            j--;
-        }
-        if (i <= j)
-        {
-            swap(students[i], students[j]);
-            i++;
-            j--;
-        }
-    }
-    if (i < n / 2)
-    {
-        quick_sort(i, n - 1);
-    }
-    if (j > n / 2)
-    {
-        quick_sort(0, j);
-    }
+    sort(students.begin(), students.end(), [](student a, student b) {
+        return a.score < b.score;
+    });
 }
 
 // 根据学生姓名,从students_map STL 容器中查找学生信息
@@ -120,20 +78,6 @@ student CStudent::find_student(string name)
             break;
         }
     }
-    return s;
-}
-
-// 根据学生成绩查找学生信息
-student CStudent::find_student_by_score(int score)
-{
-    for (int i = 0; i < students.size(); i++)
-    {
-        if (students[i].score == score)
-        {
-            return students[i];
-        }
-    }
-    student s;
     return s;
 }
 
@@ -179,5 +123,37 @@ void CStudent::update_student_score(int number, int score)
 {
     student_map[number].score = score;
 }
+
+// 根据学生姓名，修改一个学生的成绩
+void CStudent::update_student_score(string name, int score)
+{
+    for (auto it = student_map.begin(); it != student_map.end(); it++)
+    {
+        if (it->second.name == name)
+        {
+            it->second.score = score;
+            break;
+        }
+    }
+}
+
+// 根据给定分数，查找小于给定分数的学生信息，并返回一个vector
+vector<student> CStudent::find_students_by_score(int score)
+{
+    vector<student> students_by_score;
+    for (auto it = student_map.begin(); it != student_map.end(); it++)
+    {
+        if (it->second.score < score)
+        {
+            students_by_score.push_back(it->second);
+        }
+    }
+    return students_by_score;
+}
+
+
+
+
+
 
 
