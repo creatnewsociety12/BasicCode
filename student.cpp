@@ -172,4 +172,31 @@ void generate_number()
     }
 }
 
+// 定义一个int类型map，用于存储学生的学号。 key为学号，value为学生信息
+map<int, student> number_student;
+
+// 学生map插入一个学生信息
+void insert_number_student(int number, student s)
+{
+    number_student[number] = s;
+}
+
+// 学生map查找一个学生信息
+student find_number_student(int number)
+{
+    return number_student[number];
+}
+
+// 学生map删除一个学生信息
+void delete_number_student(int number)
+{
+    number_student.erase(number);
+}
+
+// 根据提供的学生学号，修改一个学生的成绩
+void update_number_student(int number, int score)
+{
+    number_student[number].score = score;
+}
+
 
