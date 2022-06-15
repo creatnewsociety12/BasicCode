@@ -1,3 +1,4 @@
+#include "headfile.h"
 
 // 定义一个寝室结构体，包含寝室的号码，寝室的床位数，寝室的床位号
 struct Dormitory

@@ -1,4 +1,5 @@
 
+#include "headfile.h"
 
 // 对一个int类型verctor采用冒泡排序
 void bubble_sort(vector<int> &v)

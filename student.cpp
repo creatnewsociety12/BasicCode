@@ -1,3 +1,5 @@
+#include "headfile.h"
+using namespace std;
 
 // 定义一个学生数据结构体，包含学生的姓名、学号、成绩和年龄。
 struct student
