@@ -48,20 +48,20 @@ struct student
 };
 
 // 定义一个学生类
-class student_class
+class CStudent
 {   
     // 定义一个学生数组，用来存储所有学生的数据
     student *students;
 public:
     // 构造函数，用来初始化学生数组
-    student_class()
+    CStudent()
     {
-        students = new student[100];
+        
     }
     // 析构函数，用来释放学生数组
-    ~student_class()
+    ~CStudent()
     {
-        delete[] students;
+        
     }
 
 public:
@@ -77,11 +77,22 @@ public:
         students[0] = s;
     }
 
+    // 生成一个学生，将其插入到students_map 的map结构中
+    void insert_student_map(student s)
+    {
+        students_map.insert(std::pair<int, student>(s.number, s));
+    }
+
+    // 根据学生姓名查找学生信息
+    student find_student_by_name(string name);
+
+
 private:
     // 定义一个int类型的vector，用于存储学生的学号。
     vector<int> numbers;
+    // 定义一个map，用于存储学生
+    map<int, student> students_map;
 
-    
 
 };
 

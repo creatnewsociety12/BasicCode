@@ -38,6 +38,19 @@ student create_student()
     return s;
 }
 
+// 新建一个学生
+void new_student(student *s)
+{
+    *s = create_student();
+}
+
+// 定义一个student类型的map，用来存储所有学生的信息
+map<int, student> student_map;
+
+// 新建一个student_class类实例，用来存储所有学生的信息
+student_class student_class_instance;
+
+
 // 定义一个student类型的vector，用于存储学生信息。
 vector<student> students;
 
@@ -100,22 +113,22 @@ void quick_sort()
 }
 
 // 根据学生姓名查找学生信息
-student find_student_by_name(char *name)
+student CStudent::find_student_by_name(string name)
 {
-    string s(name);
     for (int i = 0; i < students.size(); i++)
     {
-        if (string(students[i].name) == s)
+        if (students[i].name == name)
         {
             return students[i];
         }
     }
-    student s1;
-    return s1;
+    student s;
+    return s;
 }
 
+
 // 根据学生成绩查找学生信息
-student find_student_by_score(int score)
+student CStudent::find_student_by_score(int score)
 {
     for (int i = 0; i < students.size(); i++)
     {
@@ -124,12 +137,12 @@ student find_student_by_score(int score)
             return students[i];
         }
     }
-    student s1;
-    return s1;
+    student s;
+    return s;
 }
 
 // 根据学生学号查找学生信息
-student find_student_by_number(int number)
+student CStudent::find_student_by_number(int number)
 {
     for (int i = 0; i < students.size(); i++)
     {
@@ -138,12 +151,12 @@ student find_student_by_number(int number)
             return students[i];
         }
     }
-    student s1;
-    return s1;
+    student s;
+    return s;
 }
 
 // 根据学生学号，删除学生信息
-void delete_student_by_number(int number)
+void CStudent::delete_student_by_number(int number)
 {
     for (int i = 0; i < students.size(); i++)
     {
@@ -154,78 +167,62 @@ void delete_student_by_number(int number)
     }
 }
 
-// 根据学生学号，二分查找学生信息
-student binary_search_by_number(int number)
-{
-    int n = students.size();
-    int i = 0;
-    int j = n - 1;
-    int mid = 0;
-    while (i <= j)
-    {
-        mid = (i + j) / 2;
-        if (students[mid].number == number)
-        {
-            return students[mid];
-        }
-        if (students[mid].number > number)
-        {
-            j = mid - 1;
-        }
-        if (students[mid].number < number)
-        {
-            i = mid + 1;
-        }
-    }
-    student s1;
-    return s1;
-}
-
 // 随机生成一个学号，范围在10001到99999之间
 // 生成完毕后读取vector中最后一个学号，对比刚生成的学号
 // 如果二者相同则学号+1，再进行对比，直到二者不同为止，否则直接插入。
-void generate_number()
+int CStudent::generate_number()
 {
-    int number = rand() % 99999 + 10001;
-    if (numbers.size() == 0)
+    int number = rand() % 9999 + 10001;
+    for (int i = 0; i < students.size(); i++)
     {
-        numbers.push_back(number);
-    }
-    else
-    {
-        while (numbers[numbers.size() - 1] == number)
+        if (students[i].number == number)
         {
             number++;
+            i = 0;
         }
-        numbers.push_back(number);
     }
+    return number;
 }
 
-// 定义一个int类型map，用于存储学生的学号。 key为学号，value为学生信息
-map<int, student> number_student;
-
 // 学生map插入一个学生信息
-void insert_number_student(int number, student s)
+void CStudent::insert_student_map(student s)
 {
-    number_student[number] = s;
+    student_map.insert(pair<int, student>(s.number, s));
 }
 
 // 学生map查找一个学生信息
-student find_number_student(int number)
+student CStudent::find_student_map_by_number(int number)
 {
-    return number_student[number];
+    student s;
+    map<int, student>::iterator it;
+    it = student_map.find(number);
+    if (it != student_map.end())
+    {
+        s = it->second;
+    }
+    return s;
 }
 
 // 学生map删除一个学生信息
-void delete_number_student(int number)
+void CStudent::delete_student_map_by_number(int number)
 {
-    number_student.erase(number);
+    map<int, student>::iterator it;
+    it = student_map.find(number);
+    if (it != student_map.end())
+    {
+        student_map.erase(it);
+    }
 }
 
 // 根据提供的学生学号，修改一个学生的成绩
-void update_number_student(int number, int score)
+void CStudent::update_student_score(int number, int score)
 {
-    number_student[number].score = score;
+    map<int, student>::iterator it;
+    it = student_map.find(number);
+    if (it != student_map.end())
+    {
+        it->second.score = score;
+    }
 }
 
 
