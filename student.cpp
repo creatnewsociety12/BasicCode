@@ -122,6 +122,33 @@ void delete_student_by_number(int number)
     }
 }
 
+// 根据学生学号，二分查找学生信息
+student binary_search_by_number(int number)
+{
+    int n = students.size();
+    int i = 0;
+    int j = n - 1;
+    int mid = 0;
+    while (i <= j)
+    {
+        mid = (i + j) / 2;
+        if (students[mid].number == number)
+        {
+            return students[mid];
+        }
+        if (students[mid].number > number)
+        {
+            j = mid - 1;
+        }
+        if (students[mid].number < number)
+        {
+            i = mid + 1;
+        }
+    }
+    student s1;
+    return s1;
+}
+
 
 
 
