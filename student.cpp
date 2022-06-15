@@ -8,7 +8,70 @@ struct student
     int number;
     int score;
     int age;
+    // 学生性别，0是女，1是男
+    int sex;
+    // 学生当前所在年级
+    int grade;
+    // 学生当前所在班级
+    int class_number;
+    // 学生当前所在班级的辅导员
+    char teacher[20];
+    // 对应的心理辅导员
+    char counselor[20];
+    // 所在寝室号码
+    char room_number[20];
+    // 对应校园卡号码
+    char card_number[20];
+    // 对应的学生类型，0是本科生，1是研究生
+    int type;
+    // 对应的学生所在学院类型
+    int college_type;
+    // 学生所学专业
+    char major[20];
+    // 学生所在学院
+    char college[20];
+    // 学生所在学校
+    char school[20];
+    // 学生所在学校的地址
+    char address[20];
+    // 学生所在学校的电话号码
+    char phone_number[20];
+    // 学生所在学校的邮箱
+    char email[20];
+    // 学生所在学校的网址
+    char website[20];
+
+
 };
+
+// 创建一个学生信息
+student create_student()
+{
+    student s;
+    cout << "请输入学生姓名：";
+    cin >> s.name;
+    cout << "请输入学生学号：";
+    cin >> s.number;
+    cout << "请输入学生成绩：";
+    cin >> s.score;
+    cout << "请输入学生年龄：";
+    cin >> s.age;
+    cout << "请输入学生性别(0是女,1是男):";
+    cin >> s.sex;
+    cout << "请输入学生所在年级：";
+    cin >> s.grade;
+    cout << "请输入学生所在班级：";
+    cin >> s.class_number;
+    cout << "请输入学生所在班级的辅导员：";
+    cin >> s.teacher;
+    cout << "请输入学生所在寝室号码：";
+    cin >> s.room_number;
+    cout << "请输入学生对应的校园卡号码：";
+    cin >> s.card_number;
+    cout << "请输入学生的类型(0是本科生,1是研究生):";
+    cin >> s.type;
+    return s;
+}
 
 // 定义一个student类型的vector，用于存储学生信息。
 vector<student> students;
