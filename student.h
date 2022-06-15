@@ -88,7 +88,7 @@ public:
 private:
     // 定义一个int类型的vector，用于存储学生的学号。
     vector<int> numbers;
-    // 定义一个学生数据
+
     // 定义一个map，用于存储学生,其中key是学号，value是学生
     map<int, student> students_map;
 

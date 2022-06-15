@@ -2,13 +2,6 @@
 
 using namespace std;
 
-// 创建一个空的学生数据结构体
-student create_student()
-{
-    student s;
-    return s;
-}
-
 // 创建一个学生信息
 student create_student()
 {
@@ -38,32 +31,38 @@ student create_student()
     return s;
 }
 
-// 新建一个学生
-void new_student(student *s)
+// 操作students_map STL容器，将其插入某个students学生， key为学生学号，value为学生信息
+void CStudent_class::insert_student(student s)
 {
-    *s = create_student();
-}
-
-
-// 新建一个student_class类实例，用来存储所有学生的信息
-student_class student_class_instance;
-
-
-// 定义一个student类型的vector，用于存储学生信息。
-vector<student> students;
-
-// verctor插入一个学生信息
-void insert_student(student s)
-{
-    students.push_back(s);
+    students_map.insert(pair<int, student>(s.number, s));
 }
 
 // 对map类型的students_map容器，按照score成绩，把里面的每一个student，按照score成绩从小到大排序
-void sort_student_by_score()
+void CStudent_class::sort_student()
 {
-    sort(students.begin(), students.end(), [](student a, student b) {
-        return a.score < b.score;
-    });
+    // 定义一个student类型的vector，用于存储学生信息。
+    vector<student> students;
+
+    // 定义一个map类型的iterator，用于遍历students_map容器
+    map<int, student>::iterator it;
+
+    // 遍历students_map容器，将每一个student信息插入到students容器中
+    for (it = students_map.begin(); it != students_map.end(); it++)
+    {
+        students.push_back(it->second);
+    }
+
+    // 对students容器，按照score成绩，把里面的每一个student，按照score成绩从小到大排序
+    sort(students.begin(), students.end(), compare_student);
+
+    // 清空students_map容器
+    students_map.clear();
+
+    // 遍历students容器，将每一个student信息插入到students_map容器中
+    for (int i = 0; i < students.size(); i++)
+    {
+        students_map.insert(pair<int, student>(students[i].number, students[i]));
+    }
 }
 
 // 根据学生姓名,从students_map STL 容器中查找学生信息
@@ -93,23 +92,6 @@ student CStudent::find_student_by_number(int number)
 void CStudent::delete_student_by_number(int number)
 {
     students_map.erase(number);
-}
-
-// 随机生成一个学号，范围在10001到99999之间
-// 生成完毕后读取vector中最后一个学号，对比刚生成的学号
-// 如果二者相同则学号+1，再进行对比，直到二者不同为止，否则直接插入。
-int CStudent::generate_number()
-{
-    int number = rand() % 9999 + 10001;
-    for (int i = 0; i < students.size(); i++)
-    {
-        if (students[i].number == number)
-        {
-            number++;
-            i = 0;
-        }
-    }
-    return number;
 }
 
 // 学生map插入一个学生信息
