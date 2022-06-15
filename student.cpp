@@ -149,6 +149,27 @@ student binary_search_by_number(int number)
     return s1;
 }
 
+// 定义一个int类型的vector，用于存储学生的学号。
+vector<int> numbers;
 
+// 随机生成一个学号，范围在10001到99999之间
+// 生成完毕后读取vector中最后一个学号，对比刚生成的学号
+// 如果二者相同则学号+1，再进行对比，直到二者不同为止，否则直接插入。
+void generate_number()
+{
+    int number = rand() % 99999 + 10001;
+    if (numbers.size() == 0)
+    {
+        numbers.push_back(number);
+    }
+    else
+    {
+        while (numbers[numbers.size() - 1] == number)
+        {
+            number++;
+        }
+        numbers.push_back(number);
+    }
+}
 
 
