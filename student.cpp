@@ -133,7 +133,23 @@ vector<student> CStudent::find_students_by_score(int score)
     return students_by_score;
 }
 
+// 给所有学生成绩达到90分的学生，校园卡余额加100元
+void CStudent::add_money_to_students()
+{
+    for (auto it = student_map.begin(); it != student_map.end(); it++)
+    {
+        if (it->second.score >= 90)
+        {
+            it->second.card_balance += 100;
+        }
+    }
+}
 
+// 查找指定学号的学生，给其校园卡余额加上给定的金额
+void CStudent::add_money_to_student(int number, int money)
+{
+    student_map[number].card_balance += money;
+}
 
 
 

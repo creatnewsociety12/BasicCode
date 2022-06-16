@@ -73,6 +73,24 @@ struct student
     int is_bind;
     // 学生是否已经被解绑，0是未被解绑，1是已经被解绑
     int is_unbind;
+    // 本学期公共选修课名称
+    string public_course_name;
+    // 学生校园卡是否已经被挂失，0是未被挂失，1是已经被挂失
+    int is_card_loss;
+    // 学生校园卡是否已经被锁定，0是未被锁定，1是已经被锁定
+    int is_card_lock;
+    // 学生校园卡是否已经被拉黑，0是未被拉黑，1是已经被拉黑
+    int is_card_black;
+    // 学生校园卡是否已经被激活，0是未被激活，1是已经被激活
+    int is_card_active;
+    // 学生校园卡是否已经被登记，0是未被登记，1是已经被登记
+    int is_card_register;
+    // 学生校园卡是否已经被绑定，0是未被绑定，1是已经被绑定
+    int is_card_bind;
+    // 学生校园卡是否已经被解绑，0是未被解绑，1是已经被解绑
+    int is_card_unbind;
+    // 学生校园卡余额
+    int card_balance;
 
 
 
