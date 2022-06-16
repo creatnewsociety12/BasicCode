@@ -95,3 +95,50 @@ struct student
 
 
 };
+
+// 定义一个奖学金结构体
+struct Scholarship
+{
+    // 奖学金编号
+    int scholarship_id;
+    // 奖学金名称
+    string scholarship_name;
+    // 奖学金类型，0是学生奖学金，1是教师奖学金
+    int scholarship_type;
+    // 奖学金金额
+    int scholarship_amount;
+    // 奖学金是否已经发放，0是未发放，1是已经发放
+    int is_grant;
+    // 奖学金是否已经被删除，0是未被删除，1是已经被删除
+    int is_delete;
+    // 奖学金是否已经被禁用，0是未被禁用，1是已经被禁用
+    int is_disable;
+    // 奖学金是否已经被挂失，0是未被挂失，1是已经被挂失
+    int is_loss;
+    // 奖学金是否已经被锁定，0是未被锁定，1是已经被锁定
+    int is_lock;
+};
+
+// 定义一个学生本学期课程结构体
+struct StudentCourse
+{
+    // 学生本学期课程编号
+    int student_course_id;
+    // 学生编号
+    int student_id;
+    // 课程编号
+    int course_id;
+    // 课程名称
+    string course_name;
+    // 课程类型，0是公共课，1是专业课
+    int course_type;
+    // 课程学分
+    int course_credit;
+    // 课程学时
+    int course_hour;
+    // 课程是否已经被删除，0是未被删除，1是已经被删除
+};
+
+
+
+
