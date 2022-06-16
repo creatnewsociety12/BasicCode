@@ -139,6 +139,68 @@ struct StudentCourse
     // 课程是否已经被删除，0是未被删除，1是已经被删除
 };
 
+// 定义一个员工结构体
+struct Employee
+{
+    // 员工编号
+    int employee_id;
+    // 员工姓名
+    string employee_name;
+    // 员工性别，0是男，1是女
+    int employee_
+    // 员工职位，0是教师，1是管理员
+    int employee_position;
+    // 员工职称，0是讲师，1是副教授，2是教授
+    int employee_title;
+    // 员工月薪
+    int employee_salary;
+    // 员工是否已经被删除，0是未被删除，1是已经被删除
+    int is_delete;
+    // 员工是否已经被禁用，0是未被禁用，1是已经被禁用
+    int is_disable;
+    // 员工是否离职，0是未离职，1是已经离职
+    int is_leave;
+    // 员工是否已经被锁定，0是未被锁定，1是已经被锁定
+    int is_lock;
+    // 员工年假天数
+    int annual_leave;
+    // 员工调休天数
+    int rest_leave;
+    // 员工病假天数
+    int sick_leave;
+    // 员工事假天数
+    int affair_leave;
+    // 员工其他假天数
+    int other_leave;
+    
+};
+
+
+// 定义一个学生食堂就餐结构体
+struct StudentDining
+{
+    // 学生食堂就餐编号
+    int student_dining_id;
+    // 学生编号
+    int student_id;
+    // 食堂编号
+    int dining_id;
+    // 食堂名称
+    string dining_name;
+    // 食堂负责人姓名
+    string dining_principal_name;
+    // 食堂负责人联系方式
+    string dining_principal_phone;
+    // 食堂负责人职位
+    string dining_principal_position;
+    // 食堂负责人职称
+    string dining_principal_title;
+    // 食堂负责人是否已经被删除，0是未被删除，1是已经被删除
+    int is_delete;
+    // 该食堂现有员工数量
+    int dining_employee_count;
+    // 该食堂现有每个员工信息，存储在一个vector中
+    vector<Employee> dining_employee_list;
 
 
 
