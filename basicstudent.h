@@ -172,7 +172,7 @@ struct Employee
     int affair_leave;
     // 员工其他假天数
     int other_leave;
-    
+
 };
 
 
@@ -201,6 +201,46 @@ struct StudentDining
     int dining_employee_count;
     // 该食堂现有每个员工信息，存储在一个vector中
     vector<Employee> dining_employee_list;
+
+};
+
+// 定义一个宿舍楼信息结构体
+struct Dormitory
+{
+    // 宿舍楼编号
+    int dormitory_id;
+    // 宿舍楼名称
+    string dormitory_name;
+    // 宿舍楼负责人姓名
+    string dormitory_principal_name;
+    // 宿舍楼负责人联系方式
+    string dormitory_principal_phone;
+    // 宿舍楼负责人职位
+    string dormitory_principal_position;
+    // 宿舍楼负责人职称
+    string dormitory_principal_title;
+    // 宿舍楼负责人是否已经被删除，0是未被删除，1是已经被删除
+    int is_delete;
+    // 该宿舍楼现有员工数量
+    int dormitory_employee_count;
+    // 该宿舍楼现有每个员工信息，存储在一个vector中
+    vector<Employee> dormitory_employee_list;
+
+    // 该宿舍楼现有学生数量
+    int dormitory_student_count;
+    // 该宿舍楼现有每个学生信息，存储在一个vector中
+    vector<Student> dormitory_student_list;
+    // 该宿舍楼房间总数
+    int dormitory_room_count;
+    // 宿舍楼空余房间数量
+    int dormitory_room_empty_count;
+    // 宿舍楼现有房间信息，存储在一个vector中
+    vector<Room> dormitory_room_list;
+    // 宿舍楼洗衣机数量
+    int dormitory_washer_count;
+    // 宿舍楼垃圾桶数量
+    int dormitory_trash_count;
+};
 
 
 
